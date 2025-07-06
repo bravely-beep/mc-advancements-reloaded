@@ -61,13 +61,13 @@ public class AdvancementReloadedTab {
 
   private final Minecraft client;
   private final AdvancementReloadedScreen screen;
-  private final TabPlacement type;
   private final AdvancementNode root;
   private final ReloadedDisplayInfo display;
   private final ItemStack icon;
   private final Component title;
   private final AdvancementReloadedWidget rootWidget;
   private final Map<AdvancementHolder, AdvancementReloadedWidget> widgets = Maps.newLinkedHashMap();
+  private TabPlacement type;
   private int index;
   private double originX;
   private double originY;
@@ -152,6 +152,21 @@ public class AdvancementReloadedTab {
     this.index = index;
   }
 
+    /**
+   * Sets the type of the tab.
+   * <p>
+   * The type of the tab determines the position of the tab in the GUI, and
+   * is one of the values of the {@link TabPlacement} enum. The type is used
+   * to position the tab on the screen, and to determine the number of tabs
+   * that can be displayed on the screen.
+   * </p>
+   *
+   * @param type the new type of the tab
+   */
+  public void setType(final TabPlacement type) {
+    this.type = type;
+  }
+
   /**
    * Gets the root advancement of the tab.
    * <p>
@@ -176,6 +191,17 @@ public class AdvancementReloadedTab {
    */
   public Component getTitle() {
     return this.title;
+  }
+
+  /**
+   * Gets the display name of a tab for sorting purposes.
+   *
+   * @return the display name of the tab
+   */
+  public String getDisplayName() {
+    return this.getRoot().advancement().name()
+        .orElse(Component.literal(this.getRoot().toString()))
+        .getString();
   }
 
   /**
