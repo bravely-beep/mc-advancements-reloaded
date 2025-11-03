@@ -152,7 +152,7 @@ public class AdvancementReloadedTab {
     this.index = index;
   }
 
-    /**
+  /**
    * Sets the type of the tab.
    * <p>
    * The type of the tab determines the position of the tab in the GUI, and
